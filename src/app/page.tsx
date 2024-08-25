@@ -1,14 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BsArrowRightSquare } from "react-icons/bs";
 
 import Game from "@/models/game";
 import Container from "@/components/container";
+import InputGames from "@/components/input";
+import GameCard from "@/components/game-card";
 
-import { getDailyGame } from "./functions";
-import { BsArrowRightSquare } from "react-icons/bs";
+import { getDailyGame, getGamesData } from "./functions";
 
 export default async function Home() {
   const dailyGame: Game = await getDailyGame();
+  const data: Game[] = await getGamesData();
 
   return (
     <main className="w-full">
@@ -37,6 +40,13 @@ export default async function Home() {
             </figure>
           </section>
         </Link>
+        <InputGames />
+        <h2 className="text-lg font-bold mt-8 mb-5">Jogos para conhecer</h2>
+        <section className="grid gap-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {data.map((item) => (
+            <GameCard key={item.id} data={item} />
+          ))}
+        </section>
       </Container>
     </main>
   );
