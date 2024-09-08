@@ -1,10 +1,14 @@
+import { Metadata } from "next"
 import Image from "next/image";
+import { FaShareAlt } from "react-icons/fa";
 
 import Container from "@/components/container";
 import userImg from "@/assets/user.png";
 import FavoriteCard from "./components/favorites";
 
-import { FaShareAlt } from "react-icons/fa";
+export const metadata: Metadata = {
+  title: "Meu Perfil | Daily Games"
+}
 
 export default function Profile() {
   return (
